@@ -32,44 +32,39 @@
 
 import SwiftUI
 
-struct WelcomeView: View {
+struct SuccessView: View {
     var body: some View {
         ZStack {
             VStack {
-                HeaderView(titleText: "Welcome")
+                Image(systemName: "hand.raised.fill")
+                    .foregroundColor(Color.purple)
+                    .frame(width: 75.0, height: 75.0)
+                    .font(.system(size: 65))
+
+                Text("High Five!")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+
+                Text("Good job completing all four exercises!")
+                    .foregroundColor(.gray)
+                Text("Remember tomorrow's another day.")
+                    .foregroundColor(.gray)
+                Text("So eat well and get some rest.")
+                    .foregroundColor(.gray)
+            }
+            VStack {
                 Spacer()
-                Button("History") {
+                Button("Continue") {
 
                 }
                 .padding(.bottom)
-            }
-
-            VStack {
-                HStack(alignment: .bottom) {
-                    VStack(alignment: .leading) {
-                        Text("Get fit")
-                            .font(.largeTitle)
-                        Text("with high intensity interval training")
-                            .font(.headline)
-                    }
-                    Image("step-up")
-                        .resizedToFill(width: 240, height: 240)
-                        .clipShape(Circle())
-                }
-                Button(action: {}) {
-                    Text("Get Started")
-                    Image(systemName: "arrow.right.circle")
-                }
-                .padding()
-                .font(.title)
-                .background(RoundedRectangle(cornerRadius: 20).strokeBorder(Color.gray, lineWidth: 2))
             }
         }
     }
 }
 
-struct WelcomeView_Previews: PreviewProvider {
+struct SuccessView_Previews: PreviewProvider {
     static var previews: some View {
-        WelcomeView()
+        SuccessView()
     }
 }
