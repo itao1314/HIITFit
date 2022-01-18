@@ -40,9 +40,12 @@ struct HeaderView: View {
             Text(titleText)
                 .font(.largeTitle)
             HStack {
-                ForEach(0 ..< Exercise.exercises.count) {
-                    let fill = $0 == selectedTab ? ".fill" : ""
-                    Image(systemName: "\($0 + 1).circle\(fill)")
+                ForEach(0 ..< Exercise.exercises.count) { index in
+                    let fill = index == selectedTab ? ".fill" : ""
+                    Image(systemName: "\(index + 1).circle\(fill)")
+                        .onTapGesture {
+                            selectedTab = index
+                        }
                 }
             }
             .font(.title2)
