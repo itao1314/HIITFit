@@ -30,45 +30,20 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import SwiftUI
+import Foundation
 
-struct HistoryView: View {
-    let history = HistoryStore()
-
-    var body: some View {
-        ZStack(alignment: .topTrailing) {
-            Button {
-
-            } label: {
-                Image(systemName: "xmark.circle")
-            }
-            .padding(.trailing)
-            .font(.title)
-
-
-            VStack {
-                Text("History")
-                    .font(.title)
-                    .padding()
-
-                Form {
-                    ForEach(history.exerciseDays) { day in
-                        Section(header:
-                                    Text(day.date.formatted(as: "MMM d"))
-                                    .font(.headline)) {
-                            ForEach(day.exercises, id: \.self) {
-                                Text($0)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-struct HistoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        HistoryView()
+extension HistoryStore {
+    mutating func createDevData() {
+        exerciseDays = [
+            ExerciseDay(date: Date().addingTimeInterval(-86400), exercises: [
+                Exercise.exercises[0].exerciseName,
+                Exercise.exercises[1].exerciseName,
+                Exercise.exercises[2].exerciseName
+            ]),
+            ExerciseDay(date: Date().addingTimeInterval(-86400 * 2), exercises: [
+                Exercise.exercises[1].exerciseName,
+                Exercise.exercises[0].exerciseName
+            ])
+        ]
     }
 }
