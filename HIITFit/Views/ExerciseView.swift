@@ -54,7 +54,7 @@ struct ExerciseView: View {
                 Text(Date().addingTimeInterval(interval), style: .timer)
                     .font(.system(size: 90))
 
-                Button("Start/Done") {
+                Button(NSLocalizedString("Start/Done", comment: "begin exercise / mark as finished")) {
 
                 }
                 .font(.title3)
@@ -65,7 +65,7 @@ struct ExerciseView: View {
 
                 Spacer()
 
-                Button("History") {
+                Button(NSLocalizedString("History", comment: "view user activity")) {
 
                 }
                 .padding()
