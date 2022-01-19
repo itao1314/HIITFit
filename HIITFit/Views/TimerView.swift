@@ -1,15 +1,15 @@
-/// Copyright (c) 2021 Razeware LLC
-///
+/// Copyright (c) 2022 Razeware LLC
+/// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-///
+/// 
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-///
+/// 
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,7 +17,7 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
-///
+/// 
 /// This project and source code may use libraries or frameworks that are
 /// released under various Open-Source licenses. Use of those libraries and
 /// frameworks are governed by their own individual licenses.
@@ -32,24 +32,28 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @State private var selectedTab = 9
+struct TimerView: View {
+    @State private var timeRemaining = 3
+    @Binding var timerDone: Bool
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
     var body: some View {
-        TabView(selection: $selectedTab) {
-            WelcomeView(selectedTab: $selectedTab)
-                .tag(9)
-            ForEach(0 ..< Exercise.exercises.count) {
-                ExerciseView(selectedTab: $selectedTab, index: $0)
-                    .tag($0)
+        Text("\(timeRemaining)")
+            .font(.system(size: 90, design: .rounded))
+            .padding()
+            .onReceive(timer) { _ in
+                if timeRemaining > 0 {
+                    timeRemaining -= 1
+                } else {
+                    timerDone = true
+                }
             }
-        }
-        .environmentObject(HistoryStore())
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        TimerView(timerDone: .constant(false))
+            .previewLayout(.sizeThatFits)
     }
 }

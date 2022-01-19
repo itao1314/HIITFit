@@ -38,8 +38,10 @@ struct ExerciseView: View {
     @State private var rating = 0
     @State private var showHistory = false
     @State private var showSuccess = false
+    @State private var showTimer = false
+    @State private var timerDone = false
+    @EnvironmentObject var history: HistoryStore
     let index: Int
-    let interval: TimeInterval = 30
     var lastExercise: Bool {
         index + 1 == Exercise.exercises.count
     }
@@ -58,20 +60,21 @@ struct ExerciseView: View {
                         .foregroundColor(.red)
                 }
 
-                Text(Date().addingTimeInterval(interval), style: .timer)
-                    .font(.system(size: 90))
-
-                HStack(spacing: 50) {
+                HStack(spacing: 150) {
                     Button(NSLocalizedString("Start Exercise", comment: "begin exercise")) {
-
+                        showTimer.toggle()
                     }
                     Button(NSLocalizedString("Done", comment: "mark as finished")) {
+                        history.addDoneExercise(Exercise.exercises[index].exerciseName)
+                        timerDone = false
+                        showTimer.toggle()
                         if lastExercise {
                             showSuccess.toggle()
                         } else {
                             selectedTab += 1
                         }
                     }
+                    .disabled(!timerDone)
                     .sheet(isPresented: $showSuccess) {
                         SuccessView(selectedTab: $selectedTab)
                     }
@@ -79,10 +82,14 @@ struct ExerciseView: View {
                 .font(.title3)
                 .padding()
 
-                RatingView(rating: $rating)
-                    .padding()
+                if showTimer {
+                    TimerView(timerDone: $timerDone)
+                }
 
                 Spacer()
+
+                RatingView(rating: $rating)
+                    .padding()
 
                 Button(NSLocalizedString("History", comment: "view user activity")) {
                     showHistory.toggle()
@@ -98,6 +105,7 @@ struct ExerciseView: View {
 
 struct ExerciseView_Previews: PreviewProvider {
     static var previews: some View {
-        ExerciseView(selectedTab: .constant(3), index: 3)
+        ExerciseView(selectedTab: .constant(0), index: 0)
+            .environmentObject(HistoryStore())
     }
 }

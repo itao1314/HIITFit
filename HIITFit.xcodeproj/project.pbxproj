@@ -15,6 +15,7 @@
 		2B687BE027969E4F0008D77A /* squat.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2B687BE227969E4F0008D77A /* squat.mp4 */; };
 		2B687BE327969E530008D77A /* step-up.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2B687BE527969E530008D77A /* step-up.mp4 */; };
 		2B687BE627969E560008D77A /* sun-salute.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2B687BE827969E560008D77A /* sun-salute.mp4 */; };
+		2B7AA19F2797A22E00FADDE9 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7AA19E2797A22E00FADDE9 /* TimerView.swift */; };
 		2BB87EA52794FE2D003F13AF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB87EA42794FE2D003F13AF /* WelcomeView.swift */; };
 		2BB87EA72794FE3A003F13AF /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB87EA62794FE3A003F13AF /* ExerciseView.swift */; };
 		2BB87EAA2795390F003F13AF /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB87EA92795390F003F13AF /* HeaderView.swift */; };
@@ -39,6 +40,7 @@
 		2B687BE127969E4F0008D77A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = Base.lproj/squat.mp4; sourceTree = "<group>"; };
 		2B687BE427969E530008D77A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = "Base.lproj/step-up.mp4"; sourceTree = "<group>"; };
 		2B687BE727969E560008D77A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = "Base.lproj/sun-salute.mp4"; sourceTree = "<group>"; };
+		2B7AA19E2797A22E00FADDE9 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		2BB87EA42794FE2D003F13AF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		2BB87EA62794FE3A003F13AF /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		2BB87EA92795390F003F13AF /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				CD30C925251474DC0049DB93 /* ContentView.swift */,
 				2BB87EA42794FE2D003F13AF /* WelcomeView.swift */,
 				2BB87EA62794FE3A003F13AF /* ExerciseView.swift */,
+				2B7AA19E2797A22E00FADDE9 /* TimerView.swift */,
 				2BB87EAD27955132003F13AF /* HistoryView.swift */,
 				2BB87EAF279563A6003F13AF /* SuccessView.swift */,
 				2BB87EAB27954B14003F13AF /* RatingView.swift */,
@@ -240,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B7AA19F2797A22E00FADDE9 /* TimerView.swift in Sources */,
 				2BB87EA72794FE3A003F13AF /* ExerciseView.swift in Sources */,
 				2BB87EA52794FE2D003F13AF /* WelcomeView.swift in Sources */,
 				2BB87EB0279563A6003F13AF /* SuccessView.swift in Sources */,
