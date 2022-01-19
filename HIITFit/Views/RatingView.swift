@@ -33,7 +33,9 @@
 import SwiftUI
 
 struct RatingView: View {
-    @Binding var rating: Int
+    @AppStorage("ratings") private var ratings = "0000"
+    @State private var rating = 0
+    let exerciseIndex: Int
     let maximumRating = 5
     let onColor = Color.red
     let offColor = Color.gray
@@ -45,16 +47,29 @@ struct RatingView: View {
                     .foregroundColor(index > rating ? offColor : onColor)
                     .font(.largeTitle)
                     .onTapGesture {
-                        rating = index
+                        updateRating(index: index)
+                    }
+                    .onAppear {
+                        let index = ratings.index(ratings.startIndex, offsetBy: exerciseIndex)
+                        let character = ratings[index]
+                        rating = character.wholeNumberValue ?? 0
                     }
             }
         }
     }
+
+    func updateRating(index: Int) {
+        rating = index
+        let index = ratings.index(ratings.startIndex, offsetBy: exerciseIndex)
+        ratings.replaceSubrange(index...index, with: String(rating))
+    }
 }
 
 struct RatingView_Previews: PreviewProvider {
+    @AppStorage("ratings") static var ratings: String?
     static var previews: some View {
-        RatingView(rating: .constant(1))
+        ratings = nil
+        return RatingView(exerciseIndex: 0)
             .previewLayout(.sizeThatFits)
     }
 }
