@@ -33,7 +33,7 @@
 import SwiftUI
 
 struct RatingView: View {
-    @AppStorage("ratings") private var ratings = "0000"
+    @AppStorage("ratings") private var ratings = ""
     @State private var rating = 0
     let exerciseIndex: Int
     let maximumRating = 5
@@ -55,6 +55,14 @@ struct RatingView: View {
                         rating = character.wholeNumberValue ?? 0
                     }
             }
+        }
+    }
+
+    init(exerciseIndex: Int) {
+        self.exerciseIndex = exerciseIndex
+        let desiredLength = Exercise.exercises.count
+        if ratings.count < desiredLength {
+            ratings = ratings.padding(toLength: desiredLength, withPad: "0", startingAt: 0)
         }
     }
 
