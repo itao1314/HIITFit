@@ -40,6 +40,12 @@ struct RatingView: View {
     let onColor = Color.red
     let offColor = Color.gray
 
+    fileprivate func convertRating() {
+        let index = ratings.index(ratings.startIndex, offsetBy: exerciseIndex)
+        let character = ratings[index]
+        rating = character.wholeNumberValue ?? 0
+    }
+
     var body: some View {
         HStack {
             ForEach(1 ..< maximumRating+1) { index in
@@ -50,9 +56,10 @@ struct RatingView: View {
                         updateRating(index: index)
                     }
                     .onAppear {
-                        let index = ratings.index(ratings.startIndex, offsetBy: exerciseIndex)
-                        let character = ratings[index]
-                        rating = character.wholeNumberValue ?? 0
+                        convertRating()
+                    }
+                    .onChange(of: ratings) { newValue in
+                        convertRating()
                     }
             }
         }
