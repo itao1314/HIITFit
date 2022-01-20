@@ -31,6 +31,7 @@
 /// THE SOFTWARE.
 
 import Foundation
+import SwiftUI
 
 struct ExerciseDay: Identifiable {
     let id = UUID()
@@ -41,10 +42,22 @@ struct ExerciseDay: Identifiable {
 class HistoryStore: ObservableObject {
     @Published var exerciseDays: [ExerciseDay] = []
 
+    enum FileError: Error {
+        case loadFailure
+        case saveFailure
+        case urlFailure
+    }
+
+    init(withChecking: Bool) throws {
+        do {
+            try load()
+        } catch {
+            throw error
+        }
+    }
+
     init() {
-//        #if DEBUG
-//        createDevData()
-//        #endif
+
     }
 
     func addDoneExercise(_ exerciseName: String) {
@@ -54,6 +67,10 @@ class HistoryStore: ObservableObject {
         } else {
             exerciseDays.insert(ExerciseDay(date: today, exercises: [exerciseName]), at: 0)
         }
+    }
+
+    func load() throws {
+        throw FileError.loadFailure
     }
 }
 
